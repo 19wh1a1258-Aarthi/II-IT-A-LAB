@@ -1,0 +1,15 @@
+create table student(htnum int primary key, name char(15), cgpa real);
+insert into student values(1, 'shivani', 9.2),(2, 'supriya', 8.5),(3, 'tharuni', 9.5),(4, 'nandu', 8.0);
+
+select min(cgpa) as MINIMUM_CGPA from student;
+select max(cgpa) as MAXIMUM_CGPA from student ;
+select avg(cgpa) as AVG_CGPA from student;
+select sum(cgpa) as SUM_CGPA from student;
+select count(*) from student;
+
+select * from student where cgpa<(select max(cgpa) from student);
+select name from student where cgpa>(select avg(cgpa) from student);
+select count(*) from student where cgpa>(select avg(cgpa) from student);
+
+select * from student order by cgpa;
+select * from student order by cgpa desc;
