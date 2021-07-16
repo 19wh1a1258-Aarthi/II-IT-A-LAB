@@ -1,0 +1,62 @@
+#include<stdio.h>
+int main()
+{
+    int BurstTime[20],p[20],WaitingTime[20],TurnaroundTime[20],i,j,n,total=0,pos,temp;
+    float avg_WaitingTime,avg_TurnaroundTime;
+    printf("Enter number of process:");
+    scanf("%d", &n);
+  
+    printf("\nEnter Burst Time:n\n");
+    for(i = 0; i < n; i++)
+    {
+        printf("p[%d]:", i+1);
+        scanf("%d", &BurstTime[i]);
+        p[i] = i+1;         
+    }
+  
+   //sorting of burst times
+    for(i = 0; i < n; i++)
+    {
+        pos = i;
+        for(j = i+1; j < n; j++)
+        {
+            if(BurstTime[j] < BurstTime[pos])
+                pos = j;
+        }
+  
+        temp = BurstTime[i];
+        BurstTime[i] = BurstTime[pos];
+        BurstTime[pos] = temp;
+  
+        temp = p[i];
+        p[i] = p[pos];
+        p[pos] = temp;
+    }
+   
+    WaitingTime[0] = 0;            
+  
+   
+    for(i = 1; i < n; i++)
+    {
+        WaitingTime[i] = 0;
+        for(j = 0; j < i; j++)
+            WaitingTime[i] += BurstTime[j];
+  
+        total += WaitingTime[i];
+    }
+  
+    avg_WaitingTime = (float)total / n;      
+    total = 0;
+  
+    printf("\nProcesstime    BurstTime    WaitingTime   TurnaroundTime");
+    for(i = 0; i < n; i++)
+    {
+        TurnaroundTime[i] = BurstTime[i] + WaitingTime[i];   
+        total += TurnaroundTime[i];
+        printf("\np%d\t\t  %d\t\t    %d\t\t\t%d", p[i], BurstTime[i], WaitingTime[i],TurnaroundTime[i]);
+    }
+  
+    avg_TurnaroundTime = (float)total / n;    
+    printf("\n\nAverage Waiting Time=%f", avg_WaitingTime);
+    printf("\nAverage Turnaround Time=%fn",avg_TurnaroundTime);
+}
