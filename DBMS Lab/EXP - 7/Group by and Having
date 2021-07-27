@@ -1,1 +1,4 @@
+create table menu(sno int primary key, name char(20), cost real, weight real);
+insert into menu values(1, 'milk', 400, 30), (2, 'ghee', 600, 10), (3, 'butter', 800, 40), (4, 'curd', 250, 25), (5, 'milk', 1200, 35), (6, 'butter', 1060, 15);
+select name as milk_products from menu group by(name) having sum(cost) > 380;
 
