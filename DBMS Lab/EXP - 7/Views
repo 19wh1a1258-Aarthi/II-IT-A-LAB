@@ -1,1 +1,9 @@
-
+create table student (htnum int primary key, name char(15), cgpa real, busnum int);
+insert into student vaues(1, 'Shruthi', 9.3, 1), (2, 'Shivani', 9.5, 2), (3, 'Vani', 9.2, 1), (4, 'Sony', 8.3, 3), (5, 'Tharuni', 8.0, 4);
+create view details as select * from student;
+select htnum, name, cgpa from details where cgpa < 8.0;
+insert into details values(6, 'Monu', 9.8, 5);
+select htnum, name from details;
+update details set busnum = 8 where htnum = 2;
+delete from details where htnum = 4;
+select htnum, name, busnum from details;
